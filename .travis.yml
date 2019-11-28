@@ -7,3 +7,16 @@ before_install:
 
 script:
  - docker run -e CI=true lahnaoja/tokker npm run test
+
+deploy:
+  #edge: true
+  provider: elasticbeanstalk
+  region: "us-east-1"
+  app: "tokker"
+  env: "Tokker-env"
+  bucket_name: "elasticbeanstalk-us-east-1-247785070427"
+  bucket_path: "tokker"
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
